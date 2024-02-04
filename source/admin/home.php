@@ -95,7 +95,7 @@
 			  <div class="well"><?php
                             $connexion = connect();
                             // fais une requete qui recupere les commetaires d'un forum
-                            $actionsQuery = "SELECT * FROM adminactions";
+                            $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
                             $resultat_actions = mysqli_query($connexion, $actionsQuery);
                             
                         

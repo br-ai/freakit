@@ -52,7 +52,7 @@
 
         $connexion = connect();
 
-        $user_id = getIdFromEmail();
+        $user_admin = getIdFromEmail();
 
         $category_id = mysqli_real_escape_string(connect(), $_POST['category_id']);
         // Récupération des données du formulaire
@@ -66,7 +66,7 @@
 
         if (mysqli_query($connexion, $query)) {
 
-            $query = "INSERT INTO adminactions (user_admin, action) VALUES ('$user_id', 'a modifier la category $category_id')";
+            $query = "INSERT INTO adminactions (user_admin, action) VALUES ('$user_admin', 'a modifier la category $category_id')";
 
 
             // Exécution de la requête
@@ -162,7 +162,7 @@
                         <div class="well"><?php
                                             $connexion = connect();
                                             // fais une requete qui recupere les commetaires d'un forum
-                                            $actionsQuery = "SELECT * FROM adminactions";
+                                            $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
                                             $resultat = mysqli_query($connexion, $actionsQuery);
 
 
@@ -198,7 +198,7 @@
 
                             }
                             ?>
-                            <form action="categoryAdd.php" class="form" method="post">
+                            <form action="categoryUpdate.php?category_id=<?php echo $category_id;?>" class="form" method="post">
 
                                 <div class="form-group">
 

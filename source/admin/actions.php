@@ -43,7 +43,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-toggle"></span>
       </button>
-      <a class="navbar-brand" href="#">Freakit</a>
+      <a class="navbar-brand" href="home.php">Freakit</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -72,9 +72,9 @@
       <hr>
       
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="home.php"><i class="glyphicon glyphicon-flash"></i> Dashboard</a></li>
+        <li><a href="home.php" class="active"><i class="glyphicon glyphicon-flash"></i> Dashboard</a></li>
         <li><a href="users.php"><i class="glyphicon glyphicon-user"></i> Users</a></li>
-        <li><a href="forums.php"  class="active"><i class="glyphicon glyphicon-list-alt"></i> Forums</a></li>
+        <li><a href="forums.php"><i class="glyphicon glyphicon-list-alt"></i> Forums</a></li>
         <li><a href="category.php"><i class="glyphicon glyphicon-book"></i> Category</a></li>
         <li><a href="actions.php"><i class="glyphicon glyphicon-briefcase"></i> Actions</a></li>
         
@@ -95,83 +95,22 @@
 			  <div class="well"><?php
                             $connexion = connect();
                             // fais une requete qui recupere les commetaires d'un forum
-                            $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
-                            $resultat = mysqli_query($connexion, $actionsQuery);
-                            
-
-
-                            if ($resultat) {
-                                while ($row = mysqli_fetch_assoc($resultat)) {
-        
-                            ?>
-                            
-                            <?php echo $row['user_admin']; ?> <?php echo $row['action']; ?><span class="badge pull-right"><?php echo $row['date_created']; ?></span><br><?php }}?> 
-              
-              </div>
-              
-              <hr>
-              
-              <div class="panel panel-default">
-                  <div class="panel-heading"><h4>Vue globale</h4></div>
-                  
-
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                            <th>Createur</th>
-                            <th>Titre</th>
-                            <th>Message</th>
-                            <th>Date</th>
-                            <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                           
-                            // fais une requete qui recupere les commetaires d'un forum
-                            $actionsQuery = "SELECT * FROM forum";
-                            $resultat = mysqli_query($connexion, $actionsQuery);
+                            $actionsQuery = "SELECT * FROM adminactions";
+                            $resultat_actions = mysqli_query($connexion, $actionsQuery);
                             
                         
 
-                            if ($resultat) {
-                                while ($row = mysqli_fetch_assoc($resultat)) {
+                            if ($resultat_actions) {
+                                while ($rows = mysqli_fetch_assoc($resultat_actions)) {
         
                             ?>
-                            <tr>
-                            <td><?php echo $row['user_creator_id']?></td>
-                            <td><?php echo $row['title']?></td>
-                            <td><?php echo $row['message']?></td>
-                            <td><?php echo $row['date_created']?></td>
-                            <td style="width: 100px">
-                                <a href="forumClose.php?forum_id=<?php echo $row['id']?>" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top" onclick="return confirm('sure?')">
-                                <span class="fa fa-times"></span>
-                                </a>
-                                <a href="forumDelete.php?forum_id=<?php echo $row['id']?>" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top" onclick="return confirm('sure?')">
-                                <span class="fa fa-trash"></span>
-                                </a>
-                            </td>
-                            </tr>
-                            <?php
-                                                }
-                        } else {
-                                        echo "Erreur : " . mysqli_error($connexion);
-                                    }
-
-                                    mysqli_close($connexion);
-                                    ?>
-
-                        </tbody>
-                        </table>
-                        </div>
-                    
-                    
-
-                  </div><!--/panel-body-->
-              </div><!--/panel-->                     
+                            
+                            <?php echo $rows['user_admin']; ?> <?php echo $rows['action']; ?><span class="badge pull-right"><?php echo $rows['date_created']; ?></span><br><hr><?php }}?> 
               
-          	</div><!--/col-->
+              </div>
+              
+          
+              
          
            
        </div><!--/row-->
