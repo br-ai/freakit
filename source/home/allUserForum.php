@@ -182,7 +182,7 @@
                                                         <?php
                                                     if ($row['status'] == 'en cours'){
                                                         echo'<a href="forumUpdate?forum_id='.$row['id'].'" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
-                                                        <a href="forumClose?forum_id='.$row['id'].'" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>';
+                                                        <a href="forumClose?forum_id='.$row['id'].'" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close" onclick="return confirm()"> <i class="fa fa-remove h5 m-0"></i></a>';
                                                         
                                                     }
 
