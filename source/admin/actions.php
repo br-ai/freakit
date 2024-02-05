@@ -14,28 +14,28 @@
     <?php
     session_start();
     include '../sql/connect.php';
-                if (isset($_SESSION['email'])) {
-                    $email = mysqli_real_escape_string(connect(), $_SESSION['email']);
+    if (isset($_SESSION['email'])) {
+        $email = mysqli_real_escape_string(connect(), $_SESSION['email']);
 
-                    // Requête pour récupérer des informations supplémentaires à partir de la table users
-                    $query = "SELECT * FROM users WHERE email = '$email'";
-                    $result = mysqli_query(connect(), $query);
+        // Requête pour récupérer des informations supplémentaires à partir de la table users
+        $query = "SELECT * FROM users WHERE email = '$email'";
+        $result = mysqli_query(connect(), $query);
 
-                    if ($result) {
-                        $user = mysqli_fetch_assoc($result);
+        if ($result) {
+            $user = mysqli_fetch_assoc($result);
 
-                        if ($user['role'] != 'admin'){
-                            header("Location: ../login/login.php");
-                        }
-                        
-                    } else {
-                        // Gestion de l'erreur de requête
-                        echo "Erreur lors de la récupération des informations d'utilisateur : " . mysqli_error(connect());
-                    }
-                } else {
-                    // L'utilisateur n'est pas connecté
-                    header("Location: ../login/login.php");
-                }ob_end_flush();?>
+            if ($user['role'] != 'admin'){
+                header("Location: ../login/login.php");
+            }
+            
+        } else {
+            // Gestion de l'erreur de requête
+            echo "Erreur lors de la récupération des informations d'utilisateur : " . mysqli_error(connect());
+        }
+    } else {
+        // L'utilisateur n'est pas connecté
+        header("Location: ../login/login.php");
+    }ob_end_flush();?>
 <!-- Header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
   <div class="container bootstrap snippets bootdey">
@@ -91,28 +91,23 @@
        <hr>
 	   <div class="row">
             <!-- center left-->	
-         	<div class="col-md-12">
-			  <div class="well"><?php
-                            $connexion = connect();
-                            // fais une requete qui recupere les commetaires d'un forum
-                            $actionsQuery = "SELECT * FROM adminactions";
-                            $resultat_actions = mysqli_query($connexion, $actionsQuery);
-                            
-                        
+        <div class="col-md-12">
+            <div class="well"><?php
+                        $connexion = connect();
+                        //je fais une requete qui recupere les actions des administrateurs et les afficher
+                $actionsQuery = "SELECT * FROM adminactions";
+                $resultat_actions = mysqli_query($connexion, $actionsQuery);
+                
+            
 
-                            if ($resultat_actions) {
-                                while ($rows = mysqli_fetch_assoc($resultat_actions)) {
-        
-                            ?>
-                            
-                            <?php echo $rows['user_admin']; ?> <?php echo $rows['action']; ?><span class="badge pull-right"><?php echo $rows['date_created']; ?></span><br><hr><?php }}?> 
-              
-              </div>
-              
-          
-              
-         
-           
+                if ($resultat_actions) {
+                    while ($rows = mysqli_fetch_assoc($resultat_actions)) {
+
+                ?>
+                
+                <?php echo $rows['user_admin']; ?> <?php echo $rows['action']; ?><span class="badge pull-right"><?php echo $rows['date_created']; ?></span><br><hr><?php }}?> 
+            
+            </div>
        </div><!--/row-->
   	</div><!--/col-span-9-->
   </div><!--/row-->

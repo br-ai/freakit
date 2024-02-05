@@ -29,7 +29,7 @@
                         }
                         
                     } else {
-                        // Gestion de l'erreur de requête
+                        // l'erreur de requête
                         echo "Erreur lors de la récupération des informations d'utilisateur : " . mysqli_error(connect());
                     }
                 } else {

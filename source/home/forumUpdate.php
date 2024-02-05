@@ -12,7 +12,7 @@
 
                                     $user_id = getIdFromEmail();
                                     $forum_id = mysqli_real_escape_string(connect(), $_POST['forum_id']);
-                                    $title = mysqli_real_escape_string(connect(), $_POST['title']); // Échapper les données pour éviter les attaques par injection SQL
+                                    $title = mysqli_real_escape_string(connect(), $_POST['title']);
                                     $message = mysqli_real_escape_string(connect(), $_POST['message']);
                                     $category = $_POST['category'];
 
@@ -110,14 +110,13 @@
                             $result = mysqli_query($connexion, $sql);
 
                             if ($result->num_rows > 0) {
-                                // Créer le formulaire et le select
+                               
                                 
                                 
                                 echo "<select required class='form-control requiredField Highlighted-label' id='category' name='category'>";
                                 
                                 echo "<option value='' selected disabled>Selectionner une category</option>";
 
-                                // Afficher les options du select avec les données de la table "category"
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<option name='category' class='form-control requiredField Highlighted-label' value='" . $row['id'] . "'>" . $row['name'] . "</option>";
                                 }

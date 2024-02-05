@@ -12,7 +12,7 @@
 
                                    $user_id = getIdFromEmail();
 
-                                   // Requête pour obtenir le nombre d'amis d'un utilisateur
+                                   // requete pour obtenir le nombre d'amis d'un utilisateur
                                    $query = "SELECT COUNT(*) as friendCount FROM friends WHERE (user_id_1 = $user_id OR user_id_2 = $user_id) AND status = 'accepted'";
                                    
                                    $count = mysqli_query(connect(), $query);
@@ -29,13 +29,13 @@
             $user_id = getIdFromEmail();
             $connexion = connect();
 
-            // Récupérer tous les amis de l'utilisateur
+            //je récupérer tous les amis de l'utilisateur
             $queryFriends = "SELECT user_id_1, user_id_2 FROM friends WHERE (user_id_1 = $user_id OR user_id_2 = $user_id) AND status = 'accepted'";
             $resultFriends = mysqli_query($connexion, $queryFriends);
 
             if ($resultFriends) {
                 while ($rowFriends = mysqli_fetch_assoc($resultFriends)) {
-                    // Récupérer les informations de chaque ami
+                    
                     $friend_id = ($rowFriends['user_id_1'] == $user_id) ? $rowFriends['user_id_2'] : $rowFriends['user_id_1'];
                     
                     $queryUserInfo = "SELECT * FROM users WHERE id = '$friend_id'";
@@ -105,14 +105,14 @@
             $user_id = getIdFromEmail();
             $connexion = connect();
 
-            // Récupérer tous les amis de l'utilisateur
+           
             $queryFriends = "SELECT user_id_1, user_id_2 FROM friends WHERE user_id_2 = $user_id AND status = 'pending'";
             $resultFriends = mysqli_query($connexion, $queryFriends);
 
             if ($resultFriends) {
                 
                 while ($rowFriends = mysqli_fetch_assoc($resultFriends)) {
-                    // Récupérer les informations de chaque ami
+              
                     $friend_id = ($rowFriends['user_id_1'] == $user_id) ? $rowFriends['user_id_2'] : $rowFriends['user_id_1'];
                     
                     $queryUserInfo = "SELECT * FROM users WHERE id = '$friend_id'";

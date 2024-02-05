@@ -40,10 +40,11 @@
             </form>
 
             <script>
+                // ce script permet a ce que la touche entrer du clavier soumet le formulaire
                 function submitForm(event) {
                     if (event.key === "Enter") {
-                        event.preventDefault(); // Empêche le comportement par défaut (envoi du formulaire)
-                        document.getElementById("searchForm").submit(); // Soumet le formulaire
+                        event.preventDefault(); 
+                        document.getElementById("searchForm").submit(); 
                     }
                 }
             </script>

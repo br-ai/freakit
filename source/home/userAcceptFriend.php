@@ -13,8 +13,7 @@
                                         $user_id_2 = mysqli_real_escape_string(connect(), $_GET['id']);
                                         $connexion = connect();
                             
-                                        
-                                        // Nouvelle requête pour obtenir le nombre de résultats
+            
                                         $queryFriends = "UPDATE friends SET status = 'accepted' WHERE ((user_id_1 = $user_id_1 AND user_id_2 = $user_id_2) OR 
                                         (user_id_1 = $user_id_2 AND user_id_2 = $user_id_1))";
                                         $resultFriends = mysqli_query($connexion, $queryFriends);

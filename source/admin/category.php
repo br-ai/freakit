@@ -95,20 +95,19 @@
                     <!-- center left-->
                     <div class="col-md-12">
                         <div class="well"><?php
-                                            $connexion = connect();
-                                            // fais une requete qui recupere les commetaires d'un forum
-                                            $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
-                                            $resultat = mysqli_query($connexion, $actionsQuery);
+                            $connexion = connect();
+                            // fais une requete qui recupere les actions et je limite le nombre de row a 4
+                            $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
+                            $resultat = mysqli_query($connexion, $actionsQuery);
 
 
 
-                                            if ($resultat) {
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
+                            if ($resultat) {
+                                while ($row = mysqli_fetch_assoc($resultat)) {
 
-                                            ?>
+                            ?>
 
-                                    <?php echo $row['user_admin']; ?> <?php echo $row['action']; ?><span class="badge pull-right"><?php echo $row['date_created']; ?></span><br><?php }
-                                                                                                                                                                        } ?>
+                            <?php echo $row['user_admin']; ?> <?php echo $row['action']; ?><span class="badge pull-right"><?php echo $row['date_created']; ?></span><br><?php }} ?>
 
                         </div>
 
@@ -131,8 +130,6 @@
                                     </thead>
                                     <tbody>
                                         <?php
-
-                                        // fais une requete qui recupere les commetaires d'un forum
                                         $actionsQuery = "SELECT * FROM category";
                                         $resultat = mysqli_query($connexion, $actionsQuery);
 

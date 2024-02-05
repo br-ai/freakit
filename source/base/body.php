@@ -17,39 +17,38 @@
                 if (isset($_SESSION['email'])) {
                     $email = mysqli_real_escape_string(connect(), $_SESSION['email']);
 
-                    // Requête pour récupérer des informations supplémentaires à partir de la table users
+                    // requête pour récupérer des informations supplémentaires à partir de la table users
                     $query = "SELECT * FROM users WHERE email = '$email'";
                     $result = mysqli_query(connect(), $query);
 
                     if ($result) {
                         $user = mysqli_fetch_assoc($result);
 
-                        // Affichez les informations récupérées
+                        // affichez les informations récupérées
                         echo '<div class="profile_image">';
                         echo '<img src="../login/' . $user['avatar'] . '" alt="user" class="profile-photo">';
                         echo '<h5><a href="#" class="text-white">' . $user['pseudo'] . '</a></h5>';
                         echo '<a href="#" class="text-white">' . $user['banner'] . '</a>';
                         echo '</div>';
                     } else {
-                        // Gestion de l'erreur de requête
+                        // gestion de l'erreur de requête
                         echo "Erreur lors de la récupération des informations d'utilisateur : " . mysqli_error(connect());
                     }
                 } else {
-                    // L'utilisateur n'est pas connecté
+                    // l'utilisateur n'est pas connecté
                     header("Location: ../login/login.php");
                 }ob_end_flush();?>
               </div><!--profile card ends-->
             <ul class="nav-news-feed">
             <?php
             $filename = basename($_SERVER["SCRIPT_FILENAME"]);
-
+                // cette fonction sert a changer la class active en fonction de la page qui est consulté
             function isActivePage($pageName) {
                 global $filename;
                 return ($filename == $pageName) ? 'active_sidebar' : '';
             }
             ?>
 
-            <!-- Ensuite, dans votre HTML, vous pouvez utiliser la fonction isActivePage() pour déterminer la classe active : -->
 
             <a href="home.php"><li class="<?= isActivePage('home.php') ?>"><i class="fa fa-list-alt icon1"></i> Home</li></a>
             <a href="allUserForum.php"><li class="<?= isActivePage('allUserForum.php') ?>"><i class="fa fa-comments icon6"></i> Mes forums</li></a>
@@ -82,14 +81,14 @@
             $user_id = getIdFromEmail();
             $connexion = connect();
 
-            // Récupérer tous les amis de l'utilisateur
+            // récupérer tous les amis de l'utilisateur
             $queryFriends = "SELECT user_id_1, user_id_2 FROM friends WHERE (user_id_1 = $user_id OR user_id_2 = $user_id) AND status = 'accepted'";
             $resultFriends = mysqli_query($connexion, $queryFriends);
 
             if ($resultFriends) {
                 
                 while ($rowFriends = mysqli_fetch_assoc($resultFriends)) {
-                    // Récupérer les informations de chaque ami
+                    // récupérer les informations de chaque ami
                     $friend_id = ($rowFriends['user_id_1'] == $user_id) ? $rowFriends['user_id_2'] : $rowFriends['user_id_1'];
                     
                     $queryUserInfo = "SELECT * FROM users WHERE id = '$friend_id'";

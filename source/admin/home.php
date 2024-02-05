@@ -94,7 +94,7 @@
          	<div class="col-md-12">
 			  <div class="well"><?php
                             $connexion = connect();
-                            // fais une requete qui recupere les commetaires d'un forum
+                            // fais une requete qui recupere les actions d'un forum
                             $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
                             $resultat_actions = mysqli_query($connexion, $actionsQuery);
                             
@@ -140,7 +140,7 @@
                         <p>
                         <?php
                             $connexion = connect();
-                            // fais une requete qui recupere les commetaires d'un forum
+                            // fais une requete qui recupere le nombre d'un forum
                             $forumsQuery = "SELECT count(*) as forumsCount FROM forum";
                             $forumsResult = mysqli_query($connexion, $forumsQuery);
                             
@@ -171,7 +171,7 @@
                                 $commentsData = mysqli_fetch_assoc($commentsResult);
                                 $commentsCount = $commentsData['commentsCount']; 
                             } else {
-                                // Gérez l'erreur en conséquence
+                                
                                 echo "Erreur lors de la récupération des commentaires.";
                             }
 
@@ -190,7 +190,7 @@
                                 $categoryData = mysqli_fetch_assoc($categoryResult);
                                 $categoryCount = $categoryData['categoryCount']; 
                             } else {
-                                // Gérez l'erreur en conséquence
+                              
                                 echo "Erreur lors de la récupération des category.";
                             }
 

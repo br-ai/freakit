@@ -56,7 +56,7 @@ $connexion = connect();
 
         
         // Récupération des données du formulaire
-        $nom = mysqli_real_escape_string(connect(), $_POST['nom']); // Échapper les données pour éviter les attaques par injection SQL
+        $nom = mysqli_real_escape_string(connect(), $_POST['nom']);
 
 
         $connexion = connect();

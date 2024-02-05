@@ -59,13 +59,11 @@
 
                                     <dt>Crée par:</dt> <dd>
                                     <?php
-                                                // Supposons que $row soit le résultat de votre requête pour récupérer les informations du forum
-
-                                                // Récupérez les informations de l'utilisateur correspondant à user_creator_id
+                                              
                                                 $userQuery = "SELECT * FROM users WHERE id = " . $row['user_creator_id'];
                                                 $userResult = mysqli_query($connexion, $userQuery);
 
-                                                // Vérifiez si la requête a réussi
+                                               
                                                 if ($userResult) {
                                                     $userData = mysqli_fetch_assoc($userResult);
                                                     $pseudo = $userData['pseudo'];
@@ -73,7 +71,7 @@
                                                     $id = $userData['id'];
                                                     $banner = $userData['banner'];
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                                   
                                                     $pseudo = "Utilisateur inconnu";
                                                 }
                                                 ?>
@@ -110,23 +108,22 @@
                                     <dd class="project-people">
 
                                     <?php
-                                                // Faire une requête qui récupère les commentaires d'un forum
+                                              
                                                 $commentQuery = "SELECT * FROM comments WHERE forum_id = ?";
                                                 $commentStmt = mysqli_prepare($connexion, $commentQuery);
                                                 mysqli_stmt_bind_param($commentStmt, "i", $row['id']);
                                                 mysqli_stmt_execute($commentStmt);
                                                 $commentResult = mysqli_stmt_get_result($commentStmt);
 
-                                                // Vérifier si la requête a réussi
+                                              
                                                 while ($comment = mysqli_fetch_assoc($commentResult)) {
-                                                    // Faire une requête pour récupérer l'avatar de l'utilisateur
+                                                 
                                                     $userQuery = "SELECT avatar FROM users WHERE id = ?";
                                                     $userStmt = mysqli_prepare($connexion, $userQuery);
                                                     mysqli_stmt_bind_param($userStmt, "i", $comment['user_id']);
                                                     mysqli_stmt_execute($userStmt);
                                                     $userResult = mysqli_stmt_get_result($userStmt);
 
-                                                    // Vérifier si la requête a réussi
                                                     if ($user = mysqli_fetch_assoc($userResult)) {
                                                         ?>
                                                         <div class="avatar-group-item">
@@ -190,13 +187,10 @@
                                     <div class="feed-element">
                                         <a href="userProfil?id=<?php echo $row_comments['user_id']?>" class="pull-left">
                                         <?php
-                                                // Supposons que $row soit le résultat de votre requête pour récupérer les informations du forum
-
-                                                // Récupérez les informations de l'utilisateur correspondant à user_creator_id
+                                             
                                                 $userQuerye = "SELECT * FROM users WHERE id = " . $row_comments['user_id'];
                                                 $userResulte = mysqli_query($connexion, $userQuerye);
 
-                                                // Vérifiez si la requête a réussi
                                                 if ($userResulte) {
                                                     $userDatae = mysqli_fetch_assoc($userResulte);
                                                     $pseudoe = $userDatae['pseudo'];
@@ -204,7 +198,7 @@
                                                     $id = $userDatae['id'];
                                                     $bannere = $userDatae['banner'];
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                         
                                                     $pseudo = "Utilisateur inconnu";
                                                 }
                                                 ?>
@@ -249,7 +243,7 @@
                                            
                                                     
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                                   
                                                     $error = mysqli_error($connexion);
                                                     echo $error;
                                                 }
@@ -261,7 +255,7 @@
                                            
                                                     
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                                
                                                     echo "Erreur lors de la récupération des commentaires.";
                                                 }
 

@@ -76,29 +76,29 @@
                     if ($rowCount == 1) {
                         $row = mysqli_fetch_assoc($result);
 
-                        // Vérifier le mot de passe
+                        // je Vérifier le mot de passe
                         if (password_verify($password, $row['password'])) {
-                            // Mot de passe correct, création de la session
+                           
                             $_SESSION['id'] = $row['id'];
                             $_SESSION['email'] = $row['email'];
 
-                            // Rediriger vers la page d'accueil ou toute autre page souhaitée
+                         
                             header("Location: ../home/home.php");
                             exit();
                         } else {
-                            // Mot de passe incorrect
+                     
                             $error_message = "Mot de passe incorrect.";
                         }
                     } else {
-                        // Aucun utilisateur trouvé dans la base de données
+                  
                         $error_message = "Aucun utilisateur trouvé avec cet email.";
                     }
                 } else {
-                    // Erreur lors de l'exécution de la requête
+        
                     $error_message = "Erreur lors de la vérification des informations d'identification : " . mysqli_error(connect());
                 }
 
-                // Afficher le message d'erreur s'il y en a un
+  
                 $error_message = "Email ou Mot de passe incorrect";
                 echo '<div style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: #ff0000; color: #fff; border-radius: 15px; z-index: 9999; text-align: center;">' . htmlentities($error_message) . '</div>';
             }

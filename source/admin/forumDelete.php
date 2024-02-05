@@ -1,14 +1,11 @@
 <?php
 session_start();
-// Inclure le fichier de connexion à la base de données
 include '../sql/connect.php';
 include '../home/functions.php';
 
-// Vérifier si l'ID est passé en GET
 if (isset($_GET['forum_id'])) {
-    // Échapper l'ID pour éviter les injections SQL
-
-    $forum_id = mysqli_real_escape_string(connect(), $_GET['forum_id']);
+   
+    $forum_id = mysqli_real_escape_string(connect(), $_GET['forum_id']); // reucpere l'id passé en GET
     $user_admin = getIdFromEmail();
     $connexion = connect();
 
@@ -22,10 +19,8 @@ if (isset($_GET['forum_id'])) {
         $user_admin_id = $resu['id'];
     }
 
-
-
     if ($user_admin == 'admin') {
-        // Requête pour supprimer l'utilisateur de la table users
+
         $deleteQuery = "DELETE FROM forum WHERE id = $forum_id";
         $result = mysqli_query($connexion, $deleteQuery);
 
@@ -33,8 +28,6 @@ if (isset($_GET['forum_id'])) {
 
             $query = "INSERT INTO adminactions (user_admin, action) VALUES ('$user_admin_id', 'a supprimé le forum $forum_id')";
 
-
-            // Exécution de la requête
             if (mysqli_query($connexion, $query)) {
 
                 $success = "action inseré";
@@ -42,8 +35,6 @@ if (isset($_GET['forum_id'])) {
 
                 $error = mysqli_error($connexion);
                 echo $error;
-                // echo 'error ' . mysqli_error($connexion) . '';
-
 
             }
             echo "forum supprimé avec succès.";
@@ -58,5 +49,4 @@ if (isset($_GET['forum_id'])) {
     echo "ID non spécifié dans la requête.";
 }
 
-// Fermer la connexion à la base de données
 mysqli_close(connect());

@@ -56,7 +56,7 @@
 
         $category_id = mysqli_real_escape_string(connect(), $_POST['category_id']);
         // Récupération des données du formulaire
-        $nom = mysqli_real_escape_string(connect(), $_POST['nom']); // Échapper les données pour éviter les attaques par injection SQL
+        $nom = mysqli_real_escape_string(connect(), $_POST['nom']);
 
 
         $connexion = connect();
@@ -160,20 +160,19 @@
                     <!-- center left-->
                     <div class="col-md-12">
                         <div class="well"><?php
-                                            $connexion = connect();
-                                            // fais une requete qui recupere les commetaires d'un forum
-                                            $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
-                                            $resultat = mysqli_query($connexion, $actionsQuery);
+                        $connexion = connect();
+                        // fais une requete qui recupere les actions d'un forum
+                        $actionsQuery = "SELECT * FROM adminactions ORDER BY date_created DESC LIMIT 4";
+                        $resultat = mysqli_query($connexion, $actionsQuery);
 
 
 
-                                            if ($resultat) {
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
+                        if ($resultat) {
+                            while ($row = mysqli_fetch_assoc($resultat)) {
 
-                                            ?>
+                        ?>
 
-                                    <?php echo $row['user_admin']; ?> <?php echo $row['action']; ?><span class="badge pull-right"><?php echo $row['date_created']; ?></span><br><?php }
-                                                                                                                                                                        } ?>
+                <?php echo $row['user_admin']; ?> <?php echo $row['action']; ?><span class="badge pull-right"><?php echo $row['date_created']; ?></span><br><?php }} ?>
 
                         </div>
 

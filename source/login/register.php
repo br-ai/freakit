@@ -62,20 +62,18 @@
                                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         include '../sql/connect.php';
 
-                                        // Récupération des données du formulaire
+                
                                         $pseudo = mysqli_real_escape_string(connect(), $_POST['pseudo']); // Échapper les données pour éviter les attaques par injection SQL
                                         $email = mysqli_real_escape_string(connect(), $_POST['email']);
                                         $birthday = $_POST['birthday'];
                                         $banner = mysqli_real_escape_string(connect(), $_POST['banner']);
                                         $password1 = $_POST['password1'];
         
-                                        // Gérer l'upload de l'image
                                         $target_dir = "user_avatar/";
                                         $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
                                         $uploadOk = 1;
                                         
 
-                                        // Générer un code de vérification unique
                                         $verificationCode = uniqid();
 
                                         
@@ -98,7 +96,7 @@
                                         }
                                         
                                        
-                                        // Vérification de l'unicité du pseudo
+                                 
                                         $check_username_query = "SELECT * FROM users WHERE pseudo = '$pseudo'";
                                         $check_username_result = mysqli_query(connect(), $check_username_query);
 
@@ -120,7 +118,7 @@
                                             exit();
                                         }
 
-                                        // Vérification de l'unicité de l'email
+                                    
                                         $check_email_query = "SELECT * FROM users WHERE email = '$email'";
                                         $check_email_result = mysqli_query(connect(), $check_email_query);
 
@@ -142,13 +140,10 @@
                                             exit();
                                         }
 
-                                        // ...
-
-
-                                        // Hachage du mot de passe
+                                 
                                         $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
 
-                                        // Connexion à la base de données
+                                    
                                         $connexion = connect();
 
                                         // Requête d'insertion
@@ -156,7 +151,7 @@
 
                                         // Exécution de la requête
                                         if (mysqli_query($connexion, $query)) {
-                                            // Enregistrement réussi, création de la session
+                                          
                                             $_SESSION['email'] = $email;
                                             
 

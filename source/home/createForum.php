@@ -8,27 +8,27 @@
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     
-                                    // include 'functions.php';
+                               
 
                                     $user_id = getIdFromEmail();
 
-                                    // Récupération des données du formulaire
-                                    $title = mysqli_real_escape_string(connect(), $_POST['title']); // Échapper les données pour éviter les attaques par injection SQL
+                              
+                                    $title = mysqli_real_escape_string(connect(), $_POST['title']);
                                     $message = mysqli_real_escape_string(connect(), $_POST['message']);
                                     $category = $_POST['category'];
 
                                     $connexion = connect();
-                                    // Requête d'insertion
+                                   
                                     $query = "INSERT INTO forum (user_creator_id, category_id, title, message) VALUES ('$user_id', '$category', '$title', '$message')";
 
-                                    // Exécution de la requête
+                                   
                                     if (mysqli_query($connexion, $query)) {
-                                        // Enregistrement réussi, création de la session
+                                        
                                         // echo '<meta http-equiv="refresh" content="0;url=successPage.php">';
                                         $success = "Votre forum a été creé avec success";
                                         echo '<script type="text/javascript">window.location.href = "successPage.php?success='. $success . '";</script>';
                                     } else {
-                                        // Erreur lors de l'enregistrement
+                                        // erreur lors de l'enregistrement
                                         // header("Location: errorPage.php");
                                         $error = mysqli_error($connexion);
                                         echo '<script type="text/javascript">window.location.href = "errorPage.php?error=' . $error . '";</script>';
@@ -78,14 +78,14 @@
                             $result = mysqli_query($connexion, $sql);
 
                             if ($result->num_rows > 0) {
-                                // Créer le formulaire et le select
+                              
                                 
                                 
                                 echo "<select class='form-control requiredField Highlighted-label' id='category' name='category'>";
                                 
                                 echo "<option value='' selected disabled>Selectionner une category</option>";
 
-                                // Afficher les options du select avec les données de la table "category"
+                               
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<option name='category' class='form-control requiredField Highlighted-label' value='" . $row['id'] . "'>" . $row['name'] . "</option>";
                                 }

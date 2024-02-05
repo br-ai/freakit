@@ -5,7 +5,6 @@ include '../sql/connect.php';
 if (isset($_GET['code'])) {
     $verificationCode = mysqli_real_escape_string(connect(), $_GET['code']);
     
-    // Vérifier le code de vérification dans la base de données
     $query = "SELECT * FROM users WHERE verificationCode = '$verificationCode'";
     $result = mysqli_query(connect(), $query);
 
@@ -14,7 +13,6 @@ if (isset($_GET['code'])) {
 
         if ($rowCount == 1) {
     
-        // Marquer le compte comme vérifié
         $user = mysqli_fetch_assoc($result);
         $userId = $user['id'];
 

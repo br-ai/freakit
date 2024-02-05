@@ -28,7 +28,6 @@
                 <li><a href="#">(<?php
               $user_id = getIdFromEmail();
 
-              // Requête pour obtenir le nombre d'amis d'un utilisateur
               $query = "SELECT COUNT(*) as forumCount FROM forum WHERE user_creator_id = $user_id";
               
               $result_count_forum = mysqli_query(connect(), $query);
@@ -44,7 +43,7 @@
                 <li><a href="#">(<?php
               $user_id = getIdFromEmail();
 
-              // Requête pour obtenir le nombre d'amis d'un utilisateur
+   
               $query = "SELECT COUNT(*) as friendCount FROM friends WHERE (user_id_1 = $user_id OR user_id_2 = $user_id) AND status = 'accepted'";
               
               $result_count_friend = mysqli_query(connect(), $query);

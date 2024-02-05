@@ -59,16 +59,13 @@
             <?php
             
 
-            // Vérification si le formulaire a été soumis
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Inclure votre fichier de configuration de base de données ici
+             
                 include '../sql/connect.php';
 
-                // Récupérer les données du formulaire
+    
                 $email = mysqli_real_escape_string(connect(), $_POST['email']);
-                
 
-                // Requête SQL pour vérifier les informations d'identification
                 $query = "SELECT * FROM users WHERE email = '$email'";
                 $result = mysqli_query(connect(), $query);
 

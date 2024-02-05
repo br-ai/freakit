@@ -1,13 +1,12 @@
 <?php
 session_start();
-// Inclure le fichier de connexion à la base de données
+
 include '../sql/connect.php';
 include '../home/functions.php';
 
-// Vérifier si l'ID est passé en GET
-if (isset($_GET['user_id'])) {
-    // Échapper l'ID pour éviter les injections SQL
 
+if (isset($_GET['user_id'])) {
+  
     $user_id = mysqli_real_escape_string(connect(), $_GET['user_id']);
     $user_admin = getIdFromEmail();
     $connexion = connect();

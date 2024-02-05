@@ -1,12 +1,11 @@
 <?php
 session_start();
-// Inclure le fichier de connexion à la base de données
+
 include '../sql/connect.php';
 include '../home/functions.php';
 
-// Vérifier si l'ID est passé en GET
 if (isset($_GET['category_id'])) {
-    // Échapper l'ID pour éviter les injections SQL
+
 
     $category_id = mysqli_real_escape_string(connect(), $_GET['category_id']);
     $user_admin = getIdFromEmail();
@@ -26,7 +25,7 @@ if (isset($_GET['category_id'])) {
 
 
     if ($user_admin == 'admin') {
-        // Requête pour supprimer l'utilisateur de la table users
+        // Requête pour supprimer la cat de la table users
         $deleteQuery = "DELETE FROM category WHERE id = $category_id";
         $result = mysqli_query($connexion, $deleteQuery);
 

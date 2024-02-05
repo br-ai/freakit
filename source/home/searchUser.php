@@ -14,7 +14,7 @@
                                     $connexion = connect();
                             
                                         
-                                        // Nouvelle requête pour obtenir le nombre de résultats
+                           
                                         $countQuery = "SELECT COUNT(*) as count FROM users WHERE pseudo LIKE '%$search_input%'";
                                         $countResult = mysqli_query($connexion, $countQuery);
                                         

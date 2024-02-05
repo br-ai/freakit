@@ -76,19 +76,16 @@
                                                 <p class="text-muted mb-0 team-description"><?php echo $row['message']; ?> </p>
                                             </div>
                                             <?php
-                                                // Supposons que $row soit le résultat de votre requête pour récupérer les informations du forum
-
-                                                // Récupérez les informations de l'utilisateur correspondant à user_creator_id
+                                                
                                                 $userQuery = "SELECT pseudo, avatar FROM users WHERE id = " . $row['user_creator_id'];
                                                 $userResult = mysqli_query($connexion, $userQuery);
 
-                                                // Vérifiez si la requête a réussi
                                                 if ($userResult) {
                                                     $userData = mysqli_fetch_assoc($userResult);
                                                     $pseudo = $userData['pseudo'];
                                                     $avatar = $userData['avatar'];
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                                  
                                                     $pseudo = "Utilisateur inconnu";
                                                 }
                                                 ?>
@@ -126,7 +123,7 @@
 
                                                     
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                                   
                                                     echo "Erreur lors de la récupération des commentaires.";
                                                 }
 
@@ -158,7 +155,7 @@
                                                 <div class="avatar-group float-start flex-grow-1 task-assigne">
 
                                                 <?php
-                                                // Faire une requête qui récupère les commentaires d'un forum
+                                               
                                                 $commentQuery = "SELECT * FROM comments WHERE forum_id = ?";
                                                 $commentStmt = mysqli_prepare($connexion, $commentQuery);
                                                 mysqli_stmt_bind_param($commentStmt, "i", $row['id']);
@@ -167,14 +164,13 @@
 
                                                 // Vérifier si la requête a réussi
                                                 while ($comment = mysqli_fetch_assoc($commentResult)) {
-                                                    // Faire une requête pour récupérer l'avatar de l'utilisateur
+                                                    
                                                     $userQuery = "SELECT avatar FROM users WHERE id = ?";
                                                     $userStmt = mysqli_prepare($connexion, $userQuery);
                                                     mysqli_stmt_bind_param($userStmt, "i", $comment['user_id']);
                                                     mysqli_stmt_execute($userStmt);
                                                     $userResult = mysqli_stmt_get_result($userStmt);
 
-                                                    // Vérifier si la requête a réussi
                                                     if ($user = mysqli_fetch_assoc($userResult)) {
                                                         ?>
                                                         <div class="avatar-group-item">
@@ -187,9 +183,9 @@
                                                     }
                                                 }
 
-                                                // Fermer les déclarations préparées
+                                              
                                                 mysqli_stmt_close($commentStmt);
-                                                // mysqli_stmt_close($userStmt);
+                                               
                                                 ?>
 
 

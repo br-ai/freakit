@@ -3,46 +3,7 @@
 <?php include '../base/body.php';?>
                 <div class="card">
                     
-                        <!-- <div class="col-xl-3 col-md-6">
-                            <div class="card bg-pattern">
-                                <div class="card-body">
-                                    <div class="float-right">
-                                        <i class="fa fa-archive text-primary h4 ml-3"></i>
-                                    </div>
-                                    <h5 class="font-size-20 mt-0 pt-1">24</h5>
-                                    <p class="text-muted mb-0">Total Projects</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-pattern">
-                                <div class="card-body">
-                                    <div class="float-right">
-                                        <i class="fa fa-th text-primary h4 ml-3"></i>
-                                    </div>
-                                    <h5 class="font-size-20 mt-0 pt-1">18</h5>
-                                    <p class="text-muted mb-0">Completed Projects</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-pattern">
-                                <div class="card-body">
-                                    <div class="float-right">
-                                        <i class="fa fa-file text-primary h4 ml-3"></i>
-                                    </div>
-                                    <h5 class="font-size-20 mt-0 pt-1">06</h5>
-                                    <p class="text-muted mb-0">Pending Projects</p>
-                                </div>
-                            </div>
-                        </div> -->
-                        
-                   
-                    <!-- end row -->
 
-                    <!-- <div class="row">
-                        <div class="col-lg-12"> -->
-                            <!-- <div class="card"> -->
                                 <div class="card-body">
                                 
 
@@ -62,7 +23,7 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                                    // include '../sql/connect.php';
+                                  
 
                                     $connexion = connect();
                                     $user_id = getIdFromEmail();
@@ -99,23 +60,21 @@
                                                         <div class="team">
 
                                                         <?php
-                                                            // Faire une requête qui récupère les commentaires d'un forum
+                                                            // une rerquete preparée
                                                             $commentQuery = "SELECT * FROM comments WHERE forum_id = ?";
                                                             $commentStmt = mysqli_prepare($connexion, $commentQuery);
                                                             mysqli_stmt_bind_param($commentStmt, "i", $row['id']);
                                                             mysqli_stmt_execute($commentStmt);
                                                             $commentResult = mysqli_stmt_get_result($commentStmt);
 
-                                                            // Vérifier si la requête a réussi
+                          
                                                             while ($comment = mysqli_fetch_assoc($commentResult)) {
-                                                                // Faire une requête pour récupérer l'avatar de l'utilisateur
+                                                               
                                                                 $userQuery = "SELECT avatar FROM users WHERE id = ?";
                                                                 $userStmt = mysqli_prepare($connexion, $userQuery);
                                                                 mysqli_stmt_bind_param($userStmt, "i", $comment['user_id']);
                                                                 mysqli_stmt_execute($userStmt);
                                                                 $userResult = mysqli_stmt_get_result($userStmt);
-
-                                                                // Vérifier si la requête a réussi
                                                                 if ($user = mysqli_fetch_assoc($userResult)) {
                                                         ?>
 
@@ -129,9 +88,9 @@
                                                             <?php
                                                     }
                                                 }
-                                                // Fermer les déclarations préparées
+                                                
                                                 mysqli_stmt_close($commentStmt);
-                                                // mysqli_stmt_close($userStmt);
+                                           
                                                 ?>
 
                                                             
@@ -140,7 +99,7 @@
                                                     <td>
 
                                                     <?php
-                                                // fais une requete qui recupere les commetaires d'un forum
+                                          
                                                 $commentQuery = "SELECT count(*) as commentCount FROM comments WHERE forum_id = " . $row['id'];
                                                 $commentResult = mysqli_query($connexion, $commentQuery);
 
@@ -152,7 +111,7 @@
                                                     $commentData = mysqli_fetch_assoc($commentResult);
                                                     $commentCount = $commentData['commentCount']; 
                                                 } else {
-                                                    // Gérez l'erreur en conséquence
+                                                  
                                                     echo "Erreur lors de la récupération des commentaires.";
                                                 }
 
