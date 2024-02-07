@@ -2,8 +2,8 @@
 function connect() { mysql://mysql:d556b1840b66b3a821be@vps.orbitafrica.org:8723/freakit
 $server = 'vps.orbitafrica.org';
 $bdd    = 'freakit';
-$user   = 'mysql';
-$pwd    = 'd556b1840b66b3a821be';
+$user   = 'root';
+$pwd    = '00d4ab47689600e72ba9';
 $port    = 8723; //par defaut WAMP - MAMP ::: root
 
 
