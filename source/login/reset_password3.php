@@ -8,7 +8,7 @@
             $password1 = $_POST['password1'];
             $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
 
-            // Vérifier le code de vérification dans la base de données
+  
             $query = "SELECT * FROM users WHERE verificationCode = '$verificationCode'";
             $result = mysqli_query(connect(), $query);
 
