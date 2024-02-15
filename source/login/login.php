@@ -61,10 +61,10 @@
 
             // session_start();
             if (headers_sent()) {
-                die("Redirect failed. Please click on this link: <a href=...>");
+                session_start();
             }
             else{
-                session_start();
+                
             }
 
       
@@ -93,7 +93,8 @@
                          
                             // header("Location: ../home/home.php");
                             if (headers_sent()) {
-                                die("Redirect failed. Please click on this link: <a href=...>");
+                                exit(header("Location: ../home/home.php"));
+                                // die("Redirect failed. Please click on this link: <a href=...>");
                             }
                             else{
                                 exit(header("Location: ../home/home.php"));
