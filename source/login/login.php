@@ -57,7 +57,15 @@
             <div class="col-xl-10">
 
             <?php
+
+
             // session_start();
+            if (headers_sent()) {
+                die("Redirect failed. Please click on this link: <a href=...>");
+            }
+            else{
+                session_start();
+            }
 
       
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -84,7 +92,12 @@
 
                          
                             // header("Location: ../home/home.php");
-                            echo '<script type="text/javascript">window.location.href = "/home/home.php";</script>';
+                            if (headers_sent()) {
+                                die("Redirect failed. Please click on this link: <a href=...>");
+                            }
+                            else{
+                                exit(header("Location: ../home/home.php"));
+                            }
                             exit();
                         } else {
                      
