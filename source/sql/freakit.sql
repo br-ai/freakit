@@ -119,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 INSERT INTO `comments` (`id`, `forum_id`, `user_id`, `comment`, `image`, `date_created`) VALUES
-(23, 23, 27, 'il suffit d\'utiliser un cache et aussi optimiser les requetes dans ta base de donnees', '', '2024-02-05 11:49:42'),
-(25, 23, 24, 'compresse les images et tu les rognent avant de les sauvegarder dans ta base de donnÃ©e [image=\'https://picsum.photos/id/1/200/300\']', '', '2024-02-05 11:53:50'),
-(26, 23, 28, 'Merci a tous :)', '', '2024-02-05 11:54:24');
+(23, 23, 27, 'il suffit dutiliser un cache et aussi optimiser les requetes dans ta base de donnees', '', '2024-02-05 11:49:42'),
+(25, 23, 24, 'compresse les images et tu les rognent avant de les sauvegarder dans ta base de donnÃ©e [image=https://picsum.photos/id/1/200/300\', '', '2024-02-05 11:53:50'),
+(26, 23, 28, 'Merci a tous', '', '2024-02-05 11:54:24');
 
 -- --------------------------------------------------------
 
@@ -165,8 +165,8 @@ CREATE TABLE IF NOT EXISTS `forum` (
 --
 
 INSERT INTO `forum` (`id`, `user_creator_id`, `category_id`, `title`, `message`, `status`, `date_created`) VALUES
-(23, 28, 4, 'Comment rendre mon appli plus rapide', 'J\'ai developpÃ© une appli en php et j\'aimerai la rendre plus rapide, svp quelles sont les moyens qui me parviendront a faire ce que je veux merci ', 'en cours', '2024-02-05 11:48:58'),
-(24, 27, 1, 'Costume en vente', 'j\'aimerai que quelqun me prete son costume depaque pour que je realise une piece de theatre si non m\'indique oÃ¹ je peux en acheter', 'Cloture', '2024-02-05 11:56:32');
+(23, 28, 4, 'Comment rendre mon appli plus rapide', 'Jai developpÃ© une appli en php et jaimerai la rendre plus rapide, svp quelles sont les moyens qui me parviendront a faire ce que je veux merci ', 'en cours', '2024-02-05 11:48:58'),
+(24, 27, 1, 'Costume en vente', 'jaimerai que quelqun me prete son costume depaque pour que je realise une piece de theatre si non mindique  je peux en acheter', 'Cloture', '2024-02-05 11:56:32');
 
 -- --------------------------------------------------------
 
