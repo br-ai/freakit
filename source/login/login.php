@@ -57,7 +57,7 @@
             <div class="col-xl-10">
 
             <?php
-            session_start();
+            // session_start();
 
       
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -83,7 +83,8 @@
                             $_SESSION['email'] = $row['email'];
 
                          
-                            header("Location: ../home/home.php");
+                            // header("Location: ../home/home.php");
+                            echo '<script type="text/javascript">window.location.href = "/home/home.php";</script>';
                             exit();
                         } else {
                      
