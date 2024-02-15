@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,12 +61,7 @@
 
 
             // session_start();
-            if (headers_sent()) {
-                session_start();
-            }
-            else{
-                
-            }
+            
 
       
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -91,14 +87,8 @@
                             $_SESSION['email'] = $row['email'];
 
                          
-                            // header("Location: ../home/home.php");
-                            if (headers_sent()) {
-                                exit(header("Location: ../home/home.php"));
-                                // die("Redirect failed. Please click on this link: <a href=...>");
-                            }
-                            else{
-                                exit(header("Location: ../home/home.php"));
-                            }
+                            header("Location: ../home/home.php");
+                            
                             exit();
                         } else {
                      
