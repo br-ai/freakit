@@ -2,8 +2,8 @@
 function connect() {
 $server = 'vps.orbitafrica.org';
 $bdd    = 'freakit';
-$user   = 'brondon';
-$pwd    = 'mamanetpapam666';
+$user   = 'mysql';
+$pwd    = 'a745f45df04f27ce4b9d';
 $port    = 7007; //par defaut WAMP - MAMP ::: root
 
 
