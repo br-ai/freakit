@@ -86,8 +86,8 @@
                             $_SESSION['id'] = $row['id'];
                             $_SESSION['email'] = $row['email'];
 
-                         
-                            header("Location: ../home/home.php");
+                            echo '<script type="text/javascript">window.location.href = "/home/home.php";</script>';
+                            // header("Location: ../home/home.php");
                             
                             exit();
                         } else {
